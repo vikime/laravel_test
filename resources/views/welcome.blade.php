@@ -37,6 +37,17 @@
                 <label for="exampleFormControlInput1" class="form-label">Phone</label>
                 <input type="number" class="form-control" placeholder="Contact number" name="phone">
             </div>
+
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Address</label>
+                <input type="number" class="form-control" placeholder="Contact number" name="phone">
+            </div>
+
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Pincode</label>
+                <input type="number" class="form-control" placeholder="Contact number" name="phone">
+            </div>
+
             <div class="">
                 <button type="submit" class="btn btn-success">Submit</button>
             </div>
