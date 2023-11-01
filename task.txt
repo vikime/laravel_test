@@ -1,0 +1,4 @@
+1. Laravel validation
+2. Duplicate entry validation 
+3. real time validations if email or phone already exist 
+4. create new table to store the new fields 
