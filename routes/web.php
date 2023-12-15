@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::post('customer/store', [CustomerController::class,'store'])->name('store.customer');
+Route::get('/', [CustomerController::class, 'showForm']);
+Route::post('/customer/store', [CustomerController::class,'store'])->name('store.customer');
+Route::post('/check-email', [CustomerController::class, 'checkEmail']);
+Route::post('/check-phone', [CustomerController::class, 'checkPhone']);

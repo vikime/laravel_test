@@ -17,13 +17,23 @@
 <body>
     <div class="container mt-5">
         <h1>Customer Form</h1>
-        @if (session('success'))
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                {{ session('success') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
+        @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
         @endif
-        <form action="{{ route('store.customer') }}" method="post">
+
+        @if (session('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        @endif
+        <form action="{{ route('store.customer') }}" method="POST">
             @csrf
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Name</label>
@@ -31,11 +41,11 @@
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Email</label>
-                <input type="email" class="form-control" placeholder="name@example.com" name="email">
+                <input type="email" id="email" class="form-control" placeholder="name@example.com" name="email">
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Phone</label>
-                <input type="number" class="form-control" placeholder="Contact number" name="phone">
+                <input type="number" id="phone" class="form-control" placeholder="Contact number" name="phone">
             </div>
 
             <div class="mb-3">
@@ -54,5 +64,28 @@
         </form>
     </div>
 </body>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+$('#email').on('blur', function() {
+    var email = $(this).val();
+
+    $.post('/check-email', {
+        email: email
+    }, function(data) {
+        console.log(data.message);
+    });
+});
+
+$('#phone').on('blur', function() {
+    var phone = $(this).val();
+
+    $.post('/check-phone', {
+        phone: phone
+    }, function(data) {
+        console.log(data.message);
+    });
+});
+</script>
 
 </html>
